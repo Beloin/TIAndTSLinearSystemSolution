@@ -7,6 +7,8 @@ Output:
  - Return Type: (0) Determinate, (1) Undetermined, (2) Incompatible  
  - Dependent variables Matrix
 
+*M Here is Unnecessary, since the Matrix are Rectangular*
+
 ```c
 m = M.columns - 1 // Since we have augmented Matrix
 n = M.rows 
