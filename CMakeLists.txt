@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
-project(retrosubs C)
+project(subs C)
 
 set(CMAKE_C_STANDARD 11)
 
 include_directories(.)
 
-add_executable(retrosubs
+add_executable(subs
         main.c retrosub.c retrosub.h Matrix.c Matrix.h)

@@ -2,7 +2,9 @@
 // Created by beloin on 10/09/2022.
 //
 
-int main() {
+#include <stdio.h>
 
+int main() {
+    printf("Moleque Trampa");
     return 0;
 }
