@@ -13,6 +13,10 @@ typedef struct Matrix {
 Matrix *CreateMatrix(float *items, int rows, int columns);
 
 float GetItem(Matrix *m, int i, int j);
-float At(Matrix *m, int i, int j);
+void SetItem(Matrix *m, int i, int j, float v);
+
+float* At(Matrix *m, int i, int j);
+
+void PrintMatrix(Matrix *m);
 
 #endif //RETROSUBS_MATRIX_H
