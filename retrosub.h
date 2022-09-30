@@ -5,7 +5,7 @@
 #ifndef RETROSUBS_RETROSUB_H
 #define RETROSUBS_RETROSUB_H
 
-#include "Matrix.h"
+#include "matrix/Matrix.h"
 
 int retroSubstitution(Matrix *mx, Matrix *output);
 

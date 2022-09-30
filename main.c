@@ -3,22 +3,22 @@
 //
 
 #include <stdio.h>
-#include <malloc.h>
-#include "Matrix.h"
+#include "primitive-matrix/matrix.h"
 
 int main() {
-    float *arr = malloc(sizeof(float) * 9);
-    arr[0] = 12.2F;
-    arr[1] = 12.2F;
-    arr[2] = 7;
-    arr[3] = 45;
-    arr[4] = 12;
-    arr[5] = 97;
-    arr[6] = 72;
-    arr[7] = 45;
-    arr[8] = 125.0F;
+    int n, type;
+    double **matrix;
+    printf("Select Vars Quantity: ");
+    scanf("%d", &n);
+    matrix = CreatePrimitiveMatrix(n, n + 1);
 
-    Matrix *m = CreateMatrix(arr, 3, 3);
-    PrintMatrix(m);
+    if (matrix == NULL) {
+        printf("Problem with Memory");
+        return 1;
+    }
+
+    ReadPrimitiveMatrix(matrix, n, n + 1);
+    ShowPrimitiveMatrix(matrix, n, n + 1);
+
     return 0;
 }

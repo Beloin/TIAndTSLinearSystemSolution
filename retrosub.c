@@ -3,6 +3,7 @@
 //
 
 #include "retrosub.h"
+#include "malloc.h"
 
 int retroSubstitution(Matrix *mx, Matrix *output) {
     int m = mx->columns - 1; // Augmented Matrix
@@ -28,7 +29,7 @@ int retroSubstitution(Matrix *mx, Matrix *output) {
 
         if (aii == 0) {
             if (bi != sum) {
-                *output = NULL;
+                output = NULL;
                 return 2;
             } else {
                 type = 1;
