@@ -7,6 +7,7 @@
 
 #include "matrix/Matrix.h"
 
-int retroSubstitution(Matrix *mx, Matrix *output);
+int RetroSubstitution(Matrix *mx, Matrix *output);
+int PrimitiveRetroSubstitution(double **mx, double **output, int rows, int cols);
 
 #endif //RETROSUBS_RETROSUB_H
