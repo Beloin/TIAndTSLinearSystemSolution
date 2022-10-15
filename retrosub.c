@@ -5,6 +5,10 @@
 #include "retrosub.h"
 #include "malloc.h"
 #include "primitive-matrix/matrix.h"
+#include "math.h"
+
+#define EPSILON 0.0001
+
 
 int RetroSubstitution(Matrix *mx, Matrix *output) {
     int m = mx->columns - 1; // Augmented Matrix
@@ -29,12 +33,12 @@ int RetroSubstitution(Matrix *mx, Matrix *output) {
         }
 
         if (aii == 0) {
-            if (bi != sum) {
-                output = NULL;
-                return 2;
-            } else {
+            if (fabsf(bi - sum) < EPSILON) {
                 type = 1;
                 Xs[i] = 0;
+            } else {
+                output = NULL;
+                return 2;
             }
         } else {
             Xs[i] = (bi - sum) / aii;
@@ -45,43 +49,42 @@ int RetroSubstitution(Matrix *mx, Matrix *output) {
     return type;
 }
 
-int PrimitiveRetroSubstitution(double **mx, double **output, int rows, int cols) {
-    int m = cols - 1; // Augmented Matrix
-    int n = rows;
-
-    double Xs[m];
-    for (int i = 0; i < m; ++i) {
+int PrimitiveRetroSubstitution(double **mx, double **output, int n) {
+    double Xs[n-1];
+    for (int i = 0; i < n-1; ++i) {
         Xs[i] = 0;
     }
 
     int type = 0;
-    for (int i = n - 1; i != 0; --i) {
+    for (int i = n-1; i != -1; --i) {
         double sum = 0;
-        double bi = mx[i][m];
+        double bi = mx[i][n];
         double aii = mx[i][i];
 
-        for (int j = i + 1; j < m; ++j) {
+        for (int j = i + 1; j < n; ++j) {
             double aij = mx[i][j];
             double xj = Xs[j];
             sum += aij * xj;
         }
 
         if (aii == 0) {
-            if (bi != sum) {
-                output = NULL;
-                return 2;
-            } else {
+            if (fabs(bi - sum) < EPSILON) {
                 type = 1;
                 Xs[i] = 0;
+            } else {
+                output = NULL;
+                return 2;
             }
         } else {
             Xs[i] = (bi - sum) / aii;
         }
     }
 
-    output = CreatePrimitiveMatrix(1, cols-1);
-    for (int i = 0; i < m; ++i) {
-        output[0][i] = Xs[i];
+    for (int i = 0; i < n; ++i) {
+        printf("TEST: %f\n", Xs[i]);
+        output[i][0] = Xs[i];
     }
+
+
     return type;
 }

@@ -49,5 +49,5 @@ void ShowPrimitiveMatrix(double **m, int i, int j) {
         }
         printf("\n");
     }
-    printf("}");
+    printf("}\n");
 }
